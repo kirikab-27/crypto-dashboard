@@ -12,8 +12,13 @@
     "new-project": "bash scripts/new-project.sh"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.81.2",
+    "axios": "^1.10.0",
+    "date-fns": "^4.1.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
+    "recharts": "^2.15.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
