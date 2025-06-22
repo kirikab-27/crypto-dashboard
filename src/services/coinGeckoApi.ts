@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CryptoCurrency, PriceData } from '../types/crypto';
+import { CryptoCurrency, PriceData, ChartData } from '../types/crypto';
 
 const BASE_URL = 'https://api.coingecko.com/api/v3';
 
@@ -39,6 +39,21 @@ export const coinGeckoApi = {
       return response.data;
     } catch (error) {
       console.error('Error fetching prices:', error);
+      throw error;
+    }
+  },
+
+  async fetchPriceHistory(coinId: string, days: number = 1): Promise<ChartData> {
+    try {
+      const response = await api.get(`/coins/${coinId}/market_chart`, {
+        params: {
+          vs_currency: 'usd',
+          days: days,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching price history:', error);
       throw error;
     }
   },

@@ -17,3 +17,9 @@ export interface PriceData {
     usd_24h_change: number;
   };
 }
+
+export interface ChartData {
+  prices: [number, number][];
+  market_caps: [number, number][];
+  total_volumes: [number, number][];
+}
