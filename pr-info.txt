@@ -1,0 +1,30 @@
+## Knowledge Entry Breakdown
+- Troubleshooting entries:
+.ai/knowledge/current-local/troubleshooting.md:0
+.ai/knowledge/shared/troubleshooting-shared.md:0
+- Tech notes entries:
+.ai/knowledge/current-local/tech-notes.md:0
+.ai/knowledge/shared/tech-notes-shared.md:0
+- Lessons learned entries:
+.ai/knowledge/current-local/lessons-learned.md:0
+.ai/knowledge/shared/lessons-learned-shared.md:0
+
+## Actual Knowledge Distribution:
+      3 README.md
+      1 lessons-learned-shared.md
+      1 lessons-learned.md
+      1 tech-notes-shared.md
+      1 tech-notes.md
+      1 troubleshooting-shared.md
+      1 troubleshooting.md
+
+## Total Lines by File:
+512 .ai/knowledge/current-local/troubleshooting.md
+278 .ai/knowledge/current-local/tech-notes.md
+341 .ai/knowledge/current-local/lessons-learned.md
+68 .ai/knowledge/archive/README.md
+278 .ai/knowledge/shared/tech-notes-shared.md
+513 .ai/knowledge/shared/troubleshooting-shared.md
+341 .ai/knowledge/shared/lessons-learned-shared.md
+196 .ai/knowledge/README.md
+92 .ai/knowledge/tags/README.md

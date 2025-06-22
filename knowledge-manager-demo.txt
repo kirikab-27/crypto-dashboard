@@ -1,0 +1,95 @@
+🛠️  Knowledge Manager CLI
+Usage:
+  search "query"           - Search knowledge entries
+  context-search ind1 ind2 - Find contextual knowledge
+  related k001             - Find related entries
+  add-entry [type]         - Generate entry template
+  validate                 - Validate knowledge base
+  archive YYYY-MM          - Archive entries by month
+  stats                    - Show statistics
+  check-completion         - Check development completion
+  reminder                 - Show development reminder
+
+### Search Example:
+🔍 Search results for "vite":
+
+1. [k001] prismjs Vite build error
+   Type: problem, Score: 20
+   Tags: build-error, vite, library
+   File: current/troubleshooting.md#k001
+
+2. [k003] React + Vite compatibility pattern
+   Type: pattern, Score: 20
+   Tags: pattern, vite, react, compatibility
+   File: current/tech-notes.md#k003
+
+3. [k016] Vite build tool selection
+   Type: decision, Score: 18
+   Tags: build-tool, vite, performance
+   File: current/tech-notes.md#k016
+
+4. [k002] prism-react-renderer solution
+   Type: solution, Score: 10
+   Tags: library, syntax-highlighting, vite
+   File: current/tech-notes.md#k002
+
+5. [k004] WSL localhost access issue
+   Type: problem, Score: 10
+   Tags: wsl, network, vite
+   File: current/troubleshooting.md#k004
+
+6. [k005] WSL network configuration patterns
+   Type: pattern, Score: 2
+   Tags: pattern, wsl, network, development
+   File: current/tech-notes.md#k005
+
+### Related Knowledge Example:
+🔗 Related knowledge for k001:
+
+1. [k002] prism-react-renderer solution
+   Relation: solved_by (confidence: 0.95)
+   Depth: 1
+
+2. [k003] React + Vite compatibility pattern
+   Relation: prevented_by (confidence: 0.8)
+   Depth: 1
+
+3. [k001] prismjs Vite build error
+   Relation: inverse_solved_by (confidence: 0.95)
+   Depth: 2
+
+4. [k003] React + Vite compatibility pattern
+   Relation: based_on (confidence: 0.85)
+   Depth: 2
+
+5. [k002] prism-react-renderer solution
+   Relation: inverse_based_on (confidence: 0.85)
+   Depth: 2
+
+6. [k001] prismjs Vite build error
+   Relation: inverse_prevented_by (confidence: 0.8)
+   Depth: 2
+
+7. [k016] Vite build tool selection
+   Relation: inverse_influences (confidence: 0.75)
+   Depth: 2
+
+### Statistics:
+📊 Knowledge Base Statistics
+================================
+Total entries: 22
+Graph relationships: 12
+Context patterns: 7
+Knowledge domains: 7
+
+By Type:
+  problem: 12
+  solution: 2
+  pattern: 4
+  decision: 3
+  lesson: 1
+
+By Severity:
+  high: 3
+  medium: 5
+  low: 4

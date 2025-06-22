@@ -1,0 +1,47 @@
+{
+  "permissions": {
+    "allowedDirectories": [
+      "src",
+      "public", 
+      "docs",
+      ".ai",
+      "dist"
+    ],
+    "allowedCommands": [
+      "npm",
+      "npx",
+      "git",
+      "node",
+      "tsc",
+      "eslint",
+      "prettier"
+    ],
+    "requireApproval": [
+      "rm",
+      "sudo",
+      "curl",
+      "wget",
+      "chmod",
+      "chown"
+    ]
+  },
+  "environment": {
+    "NODE_ENV": "development"
+  },
+  "project": {
+    "name": "markdown-memo-app",
+    "description": "React + TypeScript markdown note-taking application",
+    "mainFiles": [
+      "src/App.tsx",
+      "src/main.tsx",
+      "package.json",
+      "vite.config.ts",
+      ".ai/CLAUDE.md"
+    ]
+  },
+  "preferences": {
+    "autoSave": true,
+    "lintOnSave": true,
+    "formatOnSave": false
+  }
+}

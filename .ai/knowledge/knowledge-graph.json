@@ -1,0 +1,299 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-06-22T00:00:00Z",
+  "nodes": {
+    "k001": {
+      "title": "prismjs Vite build error",
+      "type": "problem",
+      "severity": "high",
+      "domain": "build-tools"
+    },
+    "k002": {
+      "title": "prism-react-renderer solution",
+      "type": "solution",
+      "effectiveness": "proven",
+      "domain": "libraries"
+    },
+    "k003": {
+      "title": "React + Vite compatibility pattern",
+      "type": "pattern",
+      "reusability": "high",
+      "domain": "patterns"
+    },
+    "k004": {
+      "title": "WSL localhost access issue",
+      "type": "problem", 
+      "severity": "medium",
+      "domain": "environment"
+    },
+    "k005": {
+      "title": "WSL network configuration patterns",
+      "type": "pattern",
+      "reusability": "high",
+      "domain": "environment"
+    },
+    "k006": {
+      "title": "TypeScript generic type inference error",
+      "type": "problem",
+      "severity": "medium",
+      "domain": "typescript"
+    },
+    "k007": {
+      "title": "TypeScript generics best practices",
+      "type": "pattern",
+      "reusability": "high",
+      "domain": "typescript"
+    },
+    "k008": {
+      "title": "marked.js async type error",
+      "type": "problem",
+      "severity": "low",
+      "domain": "libraries"
+    },
+    "k010": {
+      "title": "ESLint no-explicit-any error",
+      "type": "problem",
+      "severity": "low",
+      "domain": "code-quality"
+    },
+    "k011": {
+      "title": "ESLint no-prototype-builtins error",
+      "type": "problem",
+      "severity": "low",
+      "domain": "code-quality"
+    },
+    "k013": {
+      "title": "Git authentication error in WSL",
+      "type": "problem",
+      "severity": "medium",
+      "domain": "environment"
+    },
+    "k016": {
+      "title": "Vite build tool selection",
+      "type": "decision",
+      "impact": "high",
+      "domain": "build-tools"
+    },
+    "k017": {
+      "title": "Tailwind CSS UI framework",
+      "type": "decision",
+      "impact": "medium",
+      "domain": "ui"
+    },
+    "k018": {
+      "title": "marked.js markdown parser",
+      "type": "decision",
+      "impact": "medium",
+      "domain": "libraries"
+    },
+    "k019": {
+      "title": "LocalStorage data persistence",
+      "type": "decision",
+      "impact": "medium",
+      "domain": "persistence"
+    },
+    "k020": {
+      "title": "Component design principles",
+      "type": "pattern",
+      "reusability": "high",
+      "domain": "architecture"
+    },
+    "k029": {
+      "title": "Documentation management patterns",
+      "type": "pattern",
+      "reusability": "high",
+      "domain": "workflow"
+    },
+    "k030": {
+      "title": "Efficient development workflow",
+      "type": "pattern",
+      "reusability": "high",
+      "domain": "workflow"
+    },
+    "k031": {
+      "title": "Claude Codeへの効果的な指示方法",
+      "type": "lesson",
+      "importance": "high",
+      "domain": "workflow"
+    }
+  },
+  "edges": [
+    {
+      "from": "k001",
+      "to": "k002",
+      "relation": "solved_by",
+      "confidence": 0.95,
+      "description": "prism-react-renderer resolves prismjs Vite build error"
+    },
+    {
+      "from": "k002",
+      "to": "k003",
+      "relation": "based_on",
+      "confidence": 0.85,
+      "description": "Solution follows Vite compatibility pattern"
+    },
+    {
+      "from": "k001",
+      "to": "k003",
+      "relation": "prevented_by",
+      "confidence": 0.80,
+      "description": "Following compatibility pattern prevents this error"
+    },
+    {
+      "from": "k004",
+      "to": "k005",
+      "relation": "solved_by",
+      "confidence": 0.90,
+      "description": "WSL network configuration pattern solves localhost access"
+    },
+    {
+      "from": "k006",
+      "to": "k007",
+      "relation": "solved_by",
+      "confidence": 0.85,
+      "description": "TypeScript generics best practices resolve inference errors"
+    },
+    {
+      "from": "k008",
+      "to": "k018",
+      "relation": "related_to",
+      "confidence": 0.70,
+      "description": "marked.js type error relates to library selection decision"
+    },
+    {
+      "from": "k016",
+      "to": "k003",
+      "relation": "influences",
+      "confidence": 0.75,
+      "description": "Vite selection influences compatibility patterns"
+    },
+    {
+      "from": "k013",
+      "to": "k004",
+      "relation": "similar_context",
+      "confidence": 0.60,
+      "description": "Both are WSL-specific environment issues"
+    },
+    {
+      "from": "k010",
+      "to": "k007",
+      "relation": "prevented_by",
+      "confidence": 0.70,
+      "description": "Following TypeScript best practices prevents any type usage"
+    },
+    {
+      "from": "k020",
+      "to": "k007",
+      "relation": "complements",
+      "confidence": 0.65,
+      "description": "Component design principles complement TypeScript patterns"
+    },
+    {
+      "from": "k031",
+      "to": "k029",
+      "relation": "related_to",
+      "confidence": 0.80,
+      "description": "Effective Claude Code instructions relate to documentation management"
+    },
+    {
+      "from": "k031",
+      "to": "k030",
+      "relation": "related_to",
+      "confidence": 0.85,
+      "description": "Effective Claude Code instructions relate to efficient development workflow"
+    }
+  ],
+  "context_patterns": {
+    "vite_build_error": {
+      "indicators": ["vite", "import", "resolve", "module", "build", "error"],
+      "relevant_knowledge": ["k001", "k003", "k016"],
+      "priority": "high"
+    },
+    "wsl_environment_issues": {
+      "indicators": ["wsl", "localhost", "network", "environment", "access"],
+      "relevant_knowledge": ["k004", "k005", "k013"],
+      "priority": "medium"
+    },
+    "typescript_type_errors": {
+      "indicators": ["typescript", "type", "inference", "generics", "any"],
+      "relevant_knowledge": ["k006", "k007", "k010"],
+      "priority": "medium"
+    },
+    "library_integration": {
+      "indicators": ["library", "integration", "compatibility", "import"],
+      "relevant_knowledge": ["k002", "k003", "k008", "k018"],
+      "priority": "medium"
+    },
+    "code_quality_issues": {
+      "indicators": ["eslint", "code", "quality", "prototype", "any"],
+      "relevant_knowledge": ["k010", "k011"],
+      "priority": "low"
+    },
+    "architecture_decisions": {
+      "indicators": ["architecture", "design", "component", "pattern"],
+      "relevant_knowledge": ["k016", "k017", "k019", "k020"],
+      "priority": "medium"
+    },
+    "claude_code_workflow": {
+      "indicators": ["claude-code", "instruction", "workflow", "file-path", "best-practice"],
+      "relevant_knowledge": ["k029", "k030", "k031"],
+      "priority": "high"
+    }
+  },
+  "domains": {
+    "build-tools": {
+      "description": "Build tools and configuration",
+      "entries": ["k001", "k016"],
+      "key_patterns": ["k003"]
+    },
+    "libraries": {
+      "description": "Third-party library integration",
+      "entries": ["k002", "k008", "k018"],
+      "key_patterns": ["k003"]
+    },
+    "environment": {
+      "description": "Development environment setup",
+      "entries": ["k004", "k013"],
+      "key_patterns": ["k005"]
+    },
+    "typescript": {
+      "description": "TypeScript language features",
+      "entries": ["k006", "k010"],
+      "key_patterns": ["k007"]
+    },
+    "patterns": {
+      "description": "Reusable development patterns",
+      "entries": ["k003", "k005", "k007", "k020", "k029", "k030"]
+    },
+    "architecture": {
+      "description": "Application architecture and design",
+      "entries": ["k020"],
+      "key_decisions": ["k016", "k017", "k019"]
+    },
+    "workflow": {
+      "description": "Development workflow and best practices",
+      "entries": ["k029", "k030", "k031"],
+      "key_patterns": ["k029", "k030"]
+    }
+  },
+  "recommendations": {
+    "new_project_setup": {
+      "essential_knowledge": ["k016", "k017", "k003", "k005"],
+      "description": "Core knowledge for setting up new React+Vite projects"
+    },
+    "error_prevention": {
+      "essential_knowledge": ["k003", "k007", "k005"],
+      "description": "Patterns to prevent common errors"
+    },
+    "troubleshooting_guide": {
+      "step1": "Check context_patterns for relevant indicators",
+      "step2": "Review related nodes in knowledge graph",
+      "step3": "Apply highest confidence solutions first",
+      "step4": "Consider domain expertise when multiple options exist"
+    },
+    "workflow_optimization": {
+      "essential_knowledge": ["k029", "k030", "k031"],
+      "description": "Essential patterns for optimizing development workflow with Claude Code"
+    }
+  }
+}

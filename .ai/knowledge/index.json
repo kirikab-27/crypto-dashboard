@@ -1,0 +1,395 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-06-22T00:00:00Z",
+  "entries": [
+    {
+      "id": "k001",
+      "title": "prismjs Vite build error",
+      "type": "problem",
+      "tags": ["build-error", "vite", "library"],
+      "date": "2025-06-21",
+      "file": "current/troubleshooting.md#k001",
+      "solution_id": "k002",
+      "keywords": ["import", "module", "resolve", "prismjs", "vite", "build"],
+      "applicable_versions": {
+        "vite": ">=4.0.0",
+        "react": ">=18.0.0",
+        "prismjs": "1.29.0"
+      },
+      "context": {
+        "project_type": "react-typescript",
+        "build_tool": "vite"
+      },
+      "severity": "high"
+    },
+    {
+      "id": "k002",
+      "title": "prism-react-renderer solution",
+      "type": "solution",
+      "tags": ["library", "syntax-highlighting", "vite"],
+      "date": "2025-06-21",
+      "file": "current/tech-notes.md#k002",
+      "solves": "k001",
+      "keywords": ["prism-react-renderer", "syntax", "highlighting", "react", "vite"],
+      "applicable_versions": {
+        "vite": ">=4.0.0",
+        "react": ">=18.0.0",
+        "prism-react-renderer": "^2.3.0"
+      },
+      "context": {
+        "project_type": "react-typescript",
+        "build_tool": "vite"
+      },
+      "effectiveness": "proven"
+    },
+    {
+      "id": "k003",
+      "title": "React + Vite compatibility pattern",
+      "type": "pattern",
+      "tags": ["pattern", "vite", "react", "compatibility"],
+      "date": "2025-06-21",
+      "file": "current/tech-notes.md#k003",
+      "keywords": ["compatibility", "vite", "react", "library", "selection"],
+      "applicable_versions": {
+        "vite": ">=4.0.0",
+        "react": ">=18.0.0"
+      },
+      "context": {
+        "project_type": "react-typescript",
+        "build_tool": "vite"
+      }
+    },
+    {
+      "id": "k004",
+      "title": "WSL localhost access issue",
+      "type": "problem",
+      "tags": ["wsl", "network", "vite"],
+      "date": "2025-06-21",
+      "file": "current/troubleshooting.md#k004",
+      "solution_id": "k005",
+      "keywords": ["wsl", "localhost", "network", "access", "vite", "server"],
+      "applicable_versions": {
+        "vite": ">=4.0.0",
+        "wsl": "2.0"
+      },
+      "context": {
+        "environment": "wsl",
+        "build_tool": "vite"
+      },
+      "severity": "medium"
+    },
+    {
+      "id": "k005",
+      "title": "WSL network configuration patterns",
+      "type": "pattern",
+      "tags": ["pattern", "wsl", "network", "development"],
+      "date": "2025-06-21",
+      "file": "current/tech-notes.md#k005",
+      "solves": "k004",
+      "keywords": ["wsl", "network", "configuration", "host", "development"],
+      "applicable_versions": {
+        "wsl": "2.0",
+        "vite": ">=4.0.0"
+      },
+      "context": {
+        "environment": "wsl",
+        "build_tool": "vite"
+      }
+    },
+    {
+      "id": "k006",
+      "title": "TypeScript generic type inference error",
+      "type": "problem",
+      "tags": ["typescript", "generics", "hooks"],
+      "date": "2025-06-21",
+      "file": "current/troubleshooting.md#k006",
+      "solution_id": "k007",
+      "keywords": ["typescript", "generics", "inference", "hooks", "types"],
+      "applicable_versions": {
+        "typescript": ">=5.0.0",
+        "react": ">=18.0.0"
+      },
+      "context": {
+        "project_type": "react-typescript"
+      },
+      "severity": "medium"
+    },
+    {
+      "id": "k007",
+      "title": "TypeScript generics best practices",
+      "type": "pattern",
+      "tags": ["pattern", "typescript", "generics", "best-practices"],
+      "date": "2025-06-21",
+      "file": "current/tech-notes.md#k007",
+      "solves": "k006",
+      "keywords": ["typescript", "generics", "best-practices", "types", "patterns"],
+      "applicable_versions": {
+        "typescript": ">=5.0.0"
+      },
+      "context": {
+        "project_type": "react-typescript"
+      }
+    },
+    {
+      "id": "k008",
+      "title": "marked.js async type error",
+      "type": "problem",
+      "tags": ["markdown", "types", "async"],
+      "date": "2025-06-21",
+      "file": "current/troubleshooting.md#k008",
+      "keywords": ["marked", "markdown", "async", "types", "promise"],
+      "applicable_versions": {
+        "marked": ">=4.0.0"
+      },
+      "context": {
+        "project_type": "react-typescript"
+      },
+      "severity": "low"
+    },
+    {
+      "id": "k010",
+      "title": "ESLint no-explicit-any error",
+      "type": "problem",
+      "tags": ["eslint", "typescript", "code-quality"],
+      "date": "2025-06-21",
+      "file": "current/troubleshooting.md#k010",
+      "keywords": ["eslint", "typescript", "any", "types", "quality"],
+      "applicable_versions": {
+        "eslint": ">=8.0.0",
+        "typescript": ">=5.0.0"
+      },
+      "context": {
+        "project_type": "react-typescript"
+      },
+      "severity": "low"
+    },
+    {
+      "id": "k011",
+      "title": "ESLint no-prototype-builtins error",
+      "type": "problem",
+      "tags": ["eslint", "javascript", "prototype"],
+      "date": "2025-06-21",
+      "file": "current/troubleshooting.md#k011",
+      "keywords": ["eslint", "prototype", "hasOwnProperty", "javascript"],
+      "applicable_versions": {
+        "eslint": ">=8.0.0"
+      },
+      "context": {
+        "project_type": "react-typescript"
+      },
+      "severity": "low"
+    },
+    {
+      "id": "k013",
+      "title": "Git authentication error in WSL",
+      "type": "problem",
+      "tags": ["git", "authentication", "wsl"],
+      "date": "2025-06-21",
+      "file": "current/troubleshooting.md#k013",
+      "keywords": ["git", "authentication", "wsl", "github", "credentials"],
+      "applicable_versions": {
+        "git": ">=2.30.0",
+        "wsl": "2.0"
+      },
+      "context": {
+        "environment": "wsl",
+        "vcs": "git"
+      },
+      "severity": "medium"
+    },
+    {
+      "id": "k016",
+      "title": "Vite build tool selection",
+      "type": "decision",
+      "tags": ["build-tool", "vite", "performance"],
+      "date": "2025-06-21",
+      "file": "current/tech-notes.md#k016",
+      "keywords": ["vite", "build-tool", "performance", "hmr", "typescript"],
+      "applicable_versions": {
+        "vite": ">=4.0.0"
+      },
+      "context": {
+        "project_type": "react-typescript"
+      }
+    },
+    {
+      "id": "k017",
+      "title": "Tailwind CSS UI framework",
+      "type": "decision",
+      "tags": ["ui", "css", "tailwind"],
+      "date": "2025-06-21",
+      "file": "current/tech-notes.md#k017",
+      "keywords": ["tailwind", "css", "ui", "framework", "utility"],
+      "applicable_versions": {
+        "tailwindcss": ">=3.0.0"
+      },
+      "context": {
+        "project_type": "react-typescript"
+      }
+    },
+    {
+      "id": "k018",
+      "title": "marked.js markdown parser",
+      "type": "decision",
+      "tags": ["markdown", "parser", "library"],
+      "date": "2025-06-21",
+      "file": "current/tech-notes.md#k018",
+      "keywords": ["marked", "markdown", "parser", "library"],
+      "applicable_versions": {
+        "marked": ">=4.0.0"
+      },
+      "context": {
+        "project_type": "react-typescript"
+      }
+    },
+    {
+      "id": "k019",
+      "title": "LocalStorage data persistence",
+      "type": "decision",
+      "tags": ["persistence", "localstorage", "pattern"],
+      "date": "2025-06-21",
+      "file": "current/tech-notes.md#k019",
+      "keywords": ["localstorage", "persistence", "data", "browser"],
+      "applicable_versions": {
+        "react": ">=18.0.0"
+      },
+      "context": {
+        "project_type": "react-typescript"
+      }
+    },
+    {
+      "id": "k020",
+      "title": "Component design principles",
+      "type": "pattern",
+      "tags": ["pattern", "components", "react", "architecture"],
+      "date": "2025-06-21",
+      "file": "current/tech-notes.md#k020",
+      "keywords": ["components", "design", "patterns", "react", "architecture"],
+      "applicable_versions": {
+        "react": ">=18.0.0"
+      },
+      "context": {
+        "project_type": "react-typescript"
+      }
+    },
+    {
+      "id": "k014",
+      "title": "Monorepo \"No tasks were executed\" error",
+      "type": "problem",
+      "tags": ["monorepo", "turborepo", "pnpm", "build-error"],
+      "date": "2025-06-22",
+      "file": "current-local/troubleshooting.md#k014",
+      "keywords": ["monorepo", "turborepo", "pnpm", "no-tasks", "executed", "build"],
+      "applicable_versions": {
+        "pnpm": "latest",
+        "turborepo": "latest"
+      },
+      "context": {
+        "project_type": "monorepo",
+        "build_tool": "turborepo"
+      },
+      "severity": "high"
+    },
+    {
+      "id": "k015",
+      "title": "PostgreSQL peer authentication error",
+      "type": "problem",
+      "tags": ["postgresql", "authentication", "pg_hba", "database"],
+      "date": "2025-06-22",
+      "file": "current-local/troubleshooting.md#k015",
+      "keywords": ["postgresql", "authentication", "peer", "md5", "pg_hba", "trust"],
+      "applicable_versions": {
+        "postgresql": ">=14.0"
+      },
+      "context": {
+        "database": "postgresql",
+        "environment": "development"
+      },
+      "severity": "high"
+    },
+    {
+      "id": "k016",
+      "title": "Prisma schema file placement error",
+      "type": "problem",
+      "tags": ["prisma", "database", "schema", "file-structure"],
+      "date": "2025-06-22",
+      "file": "current-local/troubleshooting.md#k016",
+      "keywords": ["prisma", "schema", "placement", "directory", "structure"],
+      "applicable_versions": {
+        "prisma": ">=4.0.0"
+      },
+      "context": {
+        "database": "prisma",
+        "project_type": "monorepo"
+      },
+      "severity": "medium"
+    },
+    {
+      "id": "k017",
+      "title": "Monorepo environment variable inheritance problem",
+      "type": "problem",
+      "tags": ["monorepo", "environment-variables", "turborepo", "configuration"],
+      "date": "2025-06-22",
+      "file": "current-local/troubleshooting.md#k017",
+      "keywords": ["monorepo", "environment", "variables", "inheritance", "turborepo", "scope"],
+      "applicable_versions": {
+        "turborepo": "latest",
+        "node": ">=16.0.0"
+      },
+      "context": {
+        "project_type": "monorepo",
+        "build_tool": "turborepo"
+      },
+      "severity": "medium"
+    },
+    {
+      "id": "k018",
+      "title": "Development environment essential tools check",
+      "type": "problem",
+      "tags": ["setup", "dependencies", "tools-check", "development-environment"],
+      "date": "2025-06-22",
+      "file": "current-local/troubleshooting.md#k018",
+      "keywords": ["setup", "tools", "dependencies", "pnpm", "postgresql", "docker", "environment"],
+      "applicable_versions": {
+        "node": ">=16.0.0",
+        "pnpm": "latest",
+        "postgresql": ">=12.0",
+        "docker": ">=20.0.0"
+      },
+      "context": {
+        "environment": "development",
+        "setup": "initial"
+      },
+      "severity": "low"
+    },
+    {
+      "id": "k031",
+      "title": "Claude Codeへの効果的な指示方法",
+      "type": "lesson",
+      "tags": ["claude-code", "best-practice", "workflow"],
+      "date": "2025-06-22",
+      "file": "current/lessons-learned.md#k031",
+      "keywords": ["claude-code", "instruction", "file-path", "best-practice"],
+      "importance": "high",
+      "context": {
+        "tool": "claude-code",
+        "category": "workflow"
+      }
+    }
+  ],
+  "statistics": {
+    "total_entries": 22,
+    "by_type": {
+      "problem": 12,
+      "solution": 2,
+      "pattern": 4,
+      "decision": 3,
+      "lesson": 1
+    },
+    "by_severity": {
+      "high": 3,
+      "medium": 5,
+      "low": 4
+    }
+  }
+}
