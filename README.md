@@ -9,15 +9,19 @@
 - **リアルタイム価格更新**: 30秒ごとに自動更新
 - **TOP 8 仮想通貨**: BTC, ETH, USDT, XRP, BNB, SOL, USDC, TRONを表示
 - **詳細情報**: 24時間変動率、高値・安値、時価総額
+- **インタラクティブチャート**: 1H, 24H, 7D, 30Dの価格チャート
+- **ポートフォリオ管理**: 保有通貨の追加・削除・損益計算
 - **美しいUI**: ダークモードのプロフェッショナルなデザイン
 - **レスポンシブ対応**: モバイル、タブレット、デスクトップ完全対応
 
 ## 🛠️ 技術スタック
 
 - **Frontend**: React + TypeScript
-- **スタイリング**: Tailwind CSS
+- **スタイリング**: Tailwind CSS + CSS Modules
+- **チャート**: Chart.js
 - **API**: CoinGecko API
 - **状態管理**: React Hooks (useState, useEffect)
+- **ローカルストレージ**: Portfolio永続化
 - **ビルドツール**: Vite
 
 ## 🚀 セットアップ
@@ -44,15 +48,22 @@ npm run build
 - リアルタイム更新
 - レスポンシブデザイン
 
-### Phase 2 (計画中)
-- [ ] 価格チャート (1H, 24H, 7D, 30D)
-- [ ] 通貨比較機能
-- [ ] 検索・フィルター機能
+### Phase 2 (完了) ✅
+- インタラクティブ価格チャート (1H, 24H, 7D, 30D)
+- 通貨詳細情報表示
+- チャート操作機能
 
-### Phase 3 (将来)
-- [ ] ポートフォリオ管理
-- [ ] 価格アラート
+### Phase 3 (完了) ✅
+- ポートフォリオ管理機能
+- 保有通貨の追加・削除
+- リアルタイム損益計算
+- ポートフォリオ永続化
+
+### Phase 4 (将来)
+- [ ] 価格アラート機能
 - [ ] テクニカル指標
+- [ ] 検索・フィルター機能
+- [ ] 通貨比較機能
 
 ## 🏗️ プロジェクト構造
 
@@ -60,14 +71,19 @@ npm run build
 crypto-dashboard/
 ├── src/
 │   ├── components/
-│   │   ├── Dashboard.tsx    # メインダッシュボード
-│   │   └── PriceCard.tsx    # 価格表示カード
+│   │   ├── Dashboard.tsx              # メインダッシュボード
+│   │   ├── PriceCard.tsx             # 価格表示カード
+│   │   ├── Portfolio.tsx             # ポートフォリオ管理
+│   │   └── AddToPortfolioModal.tsx   # 通貨追加モーダル
 │   ├── services/
-│   │   └── coinGeckoApi.ts  # API通信
+│   │   ├── coinGeckoApi.ts           # 価格・チャートAPI
+│   │   └── portfolioService.ts       # ポートフォリオ永続化
 │   ├── hooks/
-│   │   └── useCryptoData.ts # データフェッチング
+│   │   ├── useCryptoData.ts          # 価格データフェッチング
+│   │   └── usePortfolio.ts           # ポートフォリオ状態管理
 │   └── types/
-│       └── crypto.ts        # 型定義
+│       ├── crypto.ts                 # 仮想通貨型定義
+│       └── portfolio.ts              # ポートフォリオ型定義
 ├── public/
 └── README.md
 ```
@@ -77,7 +93,9 @@ crypto-dashboard/
 このプロジェクトは [vibe-coding-template v2.2.0](https://github.com/kirikab-27/vibe-coding-template) を使用して開発されました。
 
 ### 開発時間
-- Phase 1: 約30分
+- Phase 1: 約30分 (基本価格表示)
+- Phase 2: 約45分 (インタラクティブチャート)
+- Phase 3: 約60分 (ポートフォリオ管理)
 - 知識ベースの活用により高速開発を実現
 
 ## 📸 スクリーンショット
