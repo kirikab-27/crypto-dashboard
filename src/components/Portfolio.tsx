@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { PortfolioItemWithStats, PortfolioSummary } from '../types/portfolio';
 import styles from './Portfolio.module.css';
+
+type SortField = 'name' | 'amount' | 'currentValue' | 'profit';
+type SortDirection = 'asc' | 'desc';
 
 interface PortfolioProps {
   portfolioWithStats: PortfolioItemWithStats[];
@@ -17,6 +20,62 @@ export const Portfolio: React.FC<PortfolioProps> = ({
   onRemove, 
   onAdd 
 }) => {
+  const [sortField, setSortField] = useState<SortField>('currentValue');
+  const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
+
+  const sortedPortfolio = useMemo(() => {
+    return [...portfolioWithStats].sort((a, b) => {
+      let aValue: number | string;
+      let bValue: number | string;
+
+      switch (sortField) {
+        case 'name':
+          aValue = a.name.toLowerCase();
+          bValue = b.name.toLowerCase();
+          break;
+        case 'amount':
+          aValue = a.amount;
+          bValue = b.amount;
+          break;
+        case 'currentValue':
+          aValue = a.currentValue;
+          bValue = b.currentValue;
+          break;
+        case 'profit':
+          aValue = a.profit;
+          bValue = b.profit;
+          break;
+        default:
+          return 0;
+      }
+
+      if (typeof aValue === 'string' && typeof bValue === 'string') {
+        return sortDirection === 'asc' 
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      }
+
+      if (typeof aValue === 'number' && typeof bValue === 'number') {
+        return sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
+      }
+
+      return 0;
+    });
+  }, [portfolioWithStats, sortField, sortDirection]);
+
+  const handleSort = (field: SortField) => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDirection('desc');
+    }
+  };
+
+  const getSortIcon = (field: SortField) => {
+    if (sortField !== field) return '↕️';
+    return sortDirection === 'asc' ? '↑' : '↓';
+  };
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -111,20 +170,48 @@ export const Portfolio: React.FC<PortfolioProps> = ({
             <table className={styles.table}>
               <thead className={styles.tableHeader}>
                 <tr>
-                  <th>通貨</th>
-                  <th>保有数量</th>
+                  <th 
+                    className={styles.sortableHeader}
+                    onClick={() => handleSort('name')}
+                  >
+                    通貨 <span className={styles.sortIcon}>{getSortIcon('name')}</span>
+                  </th>
+                  <th 
+                    className={styles.sortableHeader}
+                    onClick={() => handleSort('amount')}
+                  >
+                    保有数量 <span className={styles.sortIcon}>{getSortIcon('amount')}</span>
+                  </th>
                   <th>価格</th>
-                  <th>現在価値</th>
-                  <th>損益</th>
+                  <th 
+                    className={styles.sortableHeader}
+                    onClick={() => handleSort('currentValue')}
+                  >
+                    現在価値 <span className={styles.sortIcon}>{getSortIcon('currentValue')}</span>
+                  </th>
+                  <th 
+                    className={styles.sortableHeader}
+                    onClick={() => handleSort('profit')}
+                  >
+                    損益 <span className={styles.sortIcon}>{getSortIcon('profit')}</span>
+                  </th>
                   <th>購入日</th>
                   <th>操作</th>
                 </tr>
               </thead>
               <tbody>
-                {portfolioWithStats.map((item) => (
+                {sortedPortfolio.map((item) => (
                   <tr key={item.id} className={styles.tableRow}>
                     <td className={styles.tableCell}>
                       <div className={styles.coinInfo}>
+                        {item.image && (
+                          <img 
+                            src={item.image} 
+                            alt={item.name}
+                            className={styles.coinIcon}
+                            loading="lazy"
+                          />
+                        )}
                         <div>
                           <div className={styles.coinSymbol}>{item.symbol.toUpperCase()}</div>
                           <div className={styles.coinName}>{item.name}</div>

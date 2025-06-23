@@ -5,12 +5,15 @@ import styles from './PriceCard.module.css';
 
 interface PriceCardProps {
   crypto: CryptoCurrency;
+  isExpanded?: boolean;
+  onChartToggle?: (isExpanding: boolean) => void;
+  isClosingChart?: boolean;
+  isOpeningChart?: boolean;
 }
 
-export const PriceCard: React.FC<PriceCardProps> = ({ crypto }) => {
+export const PriceCard: React.FC<PriceCardProps> = ({ crypto, isExpanded = false, onChartToggle, isClosingChart = false, isOpeningChart = false }) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [previousPrice, setPreviousPrice] = useState(crypto.current_price);
-  const [showChart, setShowChart] = useState(false);
 
   useEffect(() => {
     if (crypto.current_price !== previousPrice) {
@@ -73,7 +76,9 @@ export const PriceCard: React.FC<PriceCardProps> = ({ crypto }) => {
   };
 
   const handleCardClick = () => {
-    setShowChart(!showChart);
+    if (onChartToggle) {
+      onChartToggle(!isExpanded);
+    }
   };
 
   const getChartColor = (): string => {
@@ -91,12 +96,20 @@ export const PriceCard: React.FC<PriceCardProps> = ({ crypto }) => {
   };
 
   return (
-    <div className={`${styles.card} ${isUpdating ? styles.updating : ''} ${showChart ? styles.expanded : ''}`}>
+    <div className={`${styles.card} ${isUpdating ? styles.updating : ''} ${isExpanded ? styles.expanded : ''}`}>
       <div className={styles.cardContent} onClick={handleCardClick}>
         <div className={styles.header}>
-          <div>
-            <div className={styles.symbol}>{crypto.symbol}</div>
-            <div className={styles.name}>{crypto.name}</div>
+          <div className={styles.headerLeft}>
+            <img 
+              src={crypto.image} 
+              alt={crypto.name}
+              className={styles.coinIcon}
+              loading="lazy"
+            />
+            <div>
+              <div className={styles.symbol}>{crypto.symbol}</div>
+              <div className={styles.name}>{crypto.name}</div>
+            </div>
           </div>
           <div className={styles.rank}>#{crypto.market_cap_rank}</div>
         </div>
@@ -123,8 +136,30 @@ export const PriceCard: React.FC<PriceCardProps> = ({ crypto }) => {
         </div>
       </div>
       
-      {showChart && (
+      {isClosingChart && (
+        <div className={styles.chartMessage}>
+          他のチャートを閉じています...
+        </div>
+      )}
+      
+      {isOpeningChart && (
+        <div className={styles.chartMessage}>
+          チャートを読み込んでいます...
+        </div>
+      )}
+      
+      {isExpanded && !isClosingChart && !isOpeningChart && (
         <div className={styles.chartWrapper}>
+          <button 
+            className={styles.closeChartButton}
+            onClick={(e) => {
+              e.stopPropagation();
+              onChartToggle?.(false);
+            }}
+            aria-label="チャートを閉じる"
+          >
+            ✕
+          </button>
           <PriceChart 
             coinId={crypto.id} 
             coinName={crypto.name}

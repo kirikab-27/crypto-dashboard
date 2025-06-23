@@ -275,5 +275,168 @@ interface ComponentProps {
 ```
 
 ---
+id: k035
+title: CoinGecko API integration decision
+date: 2025-06-23
+tags: [api, crypto, external-service, data-source]
+versions:
+  axios: ">=1.0.0"
+  coingecko-api: "free-tier"
+category: decision
+---
 
-最終更新: 2025-06-21
+### 決定内容
+暗号通貨データソースとしてCoinGecko APIを選択
+
+### 決定理由
+- 無料プランでも十分な機能を提供
+- 豊富な暗号通貨データをカバー
+- 信頼性の高いAPI（高いアップタイム）
+- 日本語にも対応
+- RESTful APIで統合が容易
+
+### 実装詳細
+```typescript
+// CoinGecko API サービス
+export const coinGeckoApi = {
+  async getCoins(): Promise<CryptoData[]> {
+    const response = await fetch(
+      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1'
+    );
+    return response.json();
+  },
+  
+  async getCoinDetails(id: string): Promise<CoinDetails> {
+    const response = await fetch(
+      `https://api.coingecko.com/api/v3/coins/${id}`
+    );
+    return response.json();
+  }
+};
+```
+
+### 考慮した代替案
+- CoinMarketCap API → より厳しいレート制限
+- Binance API → 取引所特化でデータが限定的
+- Alpha Vantage → 暗号通貨データが限定的
+
+### 制限事項
+- 月間API呼び出し制限: 100回/分
+- 高頻度更新には有料プランが必要
+
+### 関連知識
+- k032: Crypto dashboard development patterns
+- k033: Real-time data display optimization
+
+---
+id: k036
+title: CSS Modules styling architecture
+date: 2025-06-23
+tags: [css, architecture, styling, modules]
+versions:
+  css-modules: ">=1.0.0"
+  vite: ">=4.0.0"
+category: decision
+---
+
+### 決定内容
+コンポーネントスタイリングにCSS Modulesを採用
+
+### 決定理由
+- スコープの分離によるスタイル衝突の回避
+- Viteでの標準サポート（設定不要）
+- TypeScriptとの良好な統合
+- パフォーマンスオーバーヘッドが少ない
+- 学習コストが低い
+
+### アーキテクチャパターン
+```
+src/components/
+├── Dashboard/
+│   ├── Dashboard.tsx
+│   └── Dashboard.module.css
+├── PriceCard/
+│   ├── PriceCard.tsx
+│   └── PriceCard.module.css
+└── Portfolio/
+    ├── Portfolio.tsx
+    └── Portfolio.module.css
+```
+
+### 命名規則
+- ファイル名: `[ComponentName].module.css`
+- クラス名: camelCase（例: `.priceValue`）
+- 状態バリエーション: BEMライク（例: `.container--loading`）
+
+### 考慮した代替案
+- Tailwind CSS → 既存プロジェクトへの導入が困難
+- styled-components → ランタイムオーバーヘッド
+- Emotion → 追加の設定が必要
+
+### 関連知識
+- k034: CSS Modules with component styling patterns
+- k020: Component design principles
+
+---
+id: k037
+title: Chart.js for data visualization
+date: 2025-06-23
+tags: [charts, visualization, library]
+versions:
+  chart.js: ">=4.0.0"
+  react-chartjs-2: ">=5.0.0"
+category: decision
+---
+
+### 決定内容
+データ可視化ライブラリとしてChart.jsを選択
+
+### 決定理由
+- 豊富なチャートタイプをサポート
+- Reactとの統合が容易（react-chartjs-2）
+- 高いカスタマイズ性
+- 良好なパフォーマンス
+- アクティブなコミュニティ
+
+### 実装パターン
+```typescript
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+```
+
+### 考慮した代替案
+- D3.js → 学習コストが高い
+- Recharts → 柔軟性に制限
+- Victory → バンドルサイズが大きい
+
+### パフォーマンス考慮
+- 必要なコンポーネントのみを登録
+- データ量に応じた最適化
+- レスポンシブ対応
+
+### 関連知識
+- k032: Crypto dashboard development patterns
+- k033: Real-time data display optimization
+
+---
+
+最終更新: 2025-06-23

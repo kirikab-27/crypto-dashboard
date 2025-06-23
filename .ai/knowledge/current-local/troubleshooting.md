@@ -509,5 +509,85 @@ sudo usermod -aG docker $USER
 - 開発環境の標準化
 
 ---
+id: k019
+title: CoinGecko API rate limit exceeded error
+date: 2025-06-23
+tags: [api, rate-limit, coingecko, network-error]
+versions:
+  coingecko-api: "free-tier"
+  axios: ">=1.0.0"
+severity: high
+---
 
-最終更新: 2025-06-22
+### 問題
+4つ目のチャートを開くとネットワークエラーが発生する
+
+### エラーメッセージ
+```
+Network Error
+Request failed with status code 429
+```
+
+### 発生状況
+- 複数のチャートを短時間で開いた時
+- 4つ目のチャートでエラーが発生
+- CoinGecko API無料プランの制限に達した時
+
+### 原因
+- CoinGecko API無料プランは100リクエスト/分の制限
+- 複数チャートが同時にAPIを呼び出すと制限に達する
+- リトライ機能が不十分だった
+
+### 解決策
+
+**1. レート制限の強化:**
+```typescript
+class RequestQueue {
+  private readonly minInterval = 2000; // 2秒間隔
+  private readonly maxRequestsPerMinute = 50; // 安全マージン
+  
+  private async checkRateLimit() {
+    // 1分間のリクエスト数をカウント
+    // 制限に達したら待機
+  }
+}
+```
+
+**2. リトライ機能の実装:**
+```typescript
+private async executeWithRetry<T>(request: () => Promise<T>, maxRetries = 3): Promise<T> {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await request();
+    } catch (error: any) {
+      if (error.response?.status === 429 && attempt < maxRetries) {
+        const delay = Math.pow(2, attempt) * 1000; // 指数バックオフ
+        await new Promise(resolve => setTimeout(resolve, delay));
+        continue;
+      }
+      throw error;
+    }
+  }
+}
+```
+
+**3. ユーザーフレンドリーなエラー表示:**
+```typescript
+if (err.response?.status === 429) {
+  setError('API rate limit reached. Please wait a moment and try again.');
+}
+```
+
+### 関連知識
+- k035: CoinGecko API integration decision
+- k032: Crypto dashboard development patterns
+
+### 予防策
+- API呼び出し頻度の制御（2秒間隔）
+- リクエスト数の監視（50リクエスト/分上限）
+- キャッシュ機能の活用（5分間）
+- ユーザーへの適切なフィードバック
+
+---
+
+最終更新: 2025-06-23

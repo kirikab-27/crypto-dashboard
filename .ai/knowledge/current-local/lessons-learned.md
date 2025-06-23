@@ -338,5 +338,161 @@ CLAUDE.mdを更新してください
 - AIとの意思疎通の改善
 
 ---
+id: k032
+title: Crypto dashboard development patterns
+date: 2025-06-23
+tags: [pattern, crypto, api, real-time-data, portfolio]
+versions:
+  react: ">=18.0.0"
+  typescript: ">=5.0.0"
+  vite: ">=4.0.0"
+category: pattern
+---
 
-最終更新: 2025-06-22
+### パターン内容
+暗号通貨ダッシュボード開発のベストプラクティス
+
+### API データ管理
+```typescript
+// 効率的なAPI呼び出しパターン
+const useCryptoData = () => {
+  const [data, setData] = useState<CryptoData[]>([]);
+  const [loading, setLoading] = useState(false);
+  
+  // デバウンス処理でAPI呼び出し頻度を制御
+  const fetchData = useCallback(
+    debounce(async () => {
+      setLoading(true);
+      try {
+        const result = await coinGeckoApi.getCoins();
+        setData(result);
+      } finally {
+        setLoading(false);
+      }
+    }, 500),
+    []
+  );
+};
+```
+
+### ポートフォリオ管理パターン
+- LocalStorageでポートフォリオデータを永続化
+- リアルタイム価格更新との同期
+- パフォーマンス計算の効率化
+
+### UI/UX最適化
+- チャート表示の遅延読み込み
+- エラー状態の適切な表示
+- ローディング状態の視覚的フィードバック
+
+### 関連知識
+- k019: LocalStorage data persistence
+- k021: React TypeScript best practices
+- k027: Performance optimization patterns
+
+---
+id: k033
+title: Real-time data display optimization
+date: 2025-06-23
+tags: [pattern, real-time, performance, crypto]
+versions:
+  react: ">=18.0.0"
+category: pattern
+---
+
+### パターン内容
+リアルタイムデータ表示の最適化手法
+
+### データ更新頻度の制御
+```typescript
+// 適切な更新間隔の設定
+useEffect(() => {
+  const interval = setInterval(() => {
+    fetchPriceData();
+  }, 30000); // 30秒間隔で更新
+  
+  return () => clearInterval(interval);
+}, []);
+```
+
+### メモ化によるパフォーマンス向上
+```typescript
+// 計算結果のメモ化
+const portfolioValue = useMemo(() => {
+  return holdings.reduce((total, holding) => {
+    return total + (holding.amount * currentPrice);
+  }, 0);
+}, [holdings, currentPrice]);
+```
+
+### 学んだこと
+- 過度な更新は避け、ユーザー体験を重視
+- 重要なデータのみリアルタイム更新
+- キャッシュ戦略の重要性
+
+### 関連知識
+- k027: Performance optimization patterns
+- k032: Crypto dashboard development patterns
+
+---
+id: k034
+title: CSS Modules with component styling patterns
+date: 2025-06-23
+tags: [pattern, css-modules, styling, components]
+versions:
+  react: ">=18.0.0"
+  css-modules: ">=1.0.0"
+category: pattern
+---
+
+### パターン内容
+CSS Modulesを使ったコンポーネントスタイリングパターン
+
+### ファイル構成
+```
+components/
+├── PriceCard.tsx
+├── PriceCard.module.css
+├── Portfolio.tsx
+└── Portfolio.module.css
+```
+
+### 命名規則
+```css
+/* PriceCard.module.css */
+.container {
+  /* ベースクラス */
+}
+
+.container--loading {
+  /* 状態バリエーション */
+}
+
+.priceValue {
+  /* 要素固有のスタイル */
+}
+```
+
+### TypeScriptとの統合
+```typescript
+import styles from './PriceCard.module.css';
+
+const PriceCard: React.FC<Props> = ({ isLoading }) => (
+  <div className={`${styles.container} ${isLoading ? styles['container--loading'] : ''}`}>
+    <span className={styles.priceValue}>$1,234</span>
+  </div>
+);
+```
+
+### メリット
+- スコープの分離による名前衝突の回避
+- TypeScriptでのクラス名の型チェック
+- コンポーネント単位でのスタイル管理
+
+### 関連知識
+- k020: Component design principles
+- k021: React TypeScript best practices
+
+---
+
+最終更新: 2025-06-23

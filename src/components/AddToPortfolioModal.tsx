@@ -8,6 +8,7 @@ interface SearchResult {
   id: string;
   name: string;
   symbol: string;
+  large?: string;
   market_cap_rank: number;
 }
 
@@ -140,6 +141,7 @@ export const AddToPortfolioModal: React.FC<Props> = ({ onClose, onAdd }) => {
         coinId: selectedCoin!.id,
         symbol: selectedCoin!.symbol,
         name: selectedCoin!.name,
+        image: selectedCoin!.large,
         amount: parseFloat(amount),
         purchasePrice: parseFloat(purchasePrice),
         purchaseDate: new Date(purchaseDate),

@@ -3,6 +3,7 @@ export interface PortfolioItem {
   coinId: string;
   symbol: string;
   name: string;
+  image?: string;
   amount: number;
   purchasePrice: number;
   purchaseDate: Date;

@@ -47,6 +47,20 @@
   margin-bottom: 16px;
 }
 
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.coinIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #2a2a2a;
+  object-fit: cover;
+}
+
 .symbol {
   font-size: 24px;
   font-weight: bold;
@@ -144,11 +158,60 @@
 }
 
 .chartWrapper {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-in-out;
+  position: relative;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid #2a2a2a;
+  animation: slideDown 0.3s ease-out;
 }
 
-.expanded .chartWrapper {
-  max-height: 300px;
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.closeChartButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeChartButton:hover {
+  background: #dc2626;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.closeChartButton:active {
+  transform: scale(0.95);
+}
+
+.chartMessage {
+  padding: 20px;
+  text-align: center;
+  color: #888888;
+  font-size: 14px;
+  background: #1a1a1a;
+  border-top: 1px solid #2a2a2a;
 }
