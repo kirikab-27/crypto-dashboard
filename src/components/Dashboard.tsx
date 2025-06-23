@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCryptoData } from '../hooks/useCryptoData';
+import { usePortfolio } from '../hooks/usePortfolio';
 import { PriceCard } from './PriceCard';
+import { Portfolio } from './Portfolio';
+import { AddToPortfolioModal } from './AddToPortfolioModal';
 import { format } from 'date-fns';
 import styles from './Dashboard.module.css';
 
 export const Dashboard: React.FC = () => {
   const { data: cryptos, isLoading, isError, error, refetch } = useCryptoData(10);
+  const { portfolioWithStats, summary, loading: portfolioLoading, addToPortfolio, removeFromPortfolio } = usePortfolio();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (isLoading) {
     return (
@@ -53,6 +58,14 @@ export const Dashboard: React.FC = () => {
           <p className={styles.subtitle}>Real-time cryptocurrency prices</p>
         </div>
         
+        <Portfolio 
+          portfolioWithStats={portfolioWithStats}
+          summary={summary}
+          loading={portfolioLoading}
+          onRemove={removeFromPortfolio}
+          onAdd={() => setIsModalOpen(true)}
+        />
+        
         <div className={styles.grid}>
           {cryptos?.map((crypto) => (
             <PriceCard key={crypto.id} crypto={crypto} />
@@ -63,6 +76,16 @@ export const Dashboard: React.FC = () => {
           <div className={styles.lastUpdated}>
             Last updated: {format(new Date(cryptos[0].last_updated), 'PPpp')}
           </div>
+        )}
+        
+        {isModalOpen && (
+          <AddToPortfolioModal 
+            onClose={() => setIsModalOpen(false)}
+            onAdd={(item) => {
+              addToPortfolio(item);
+              setIsModalOpen(false);
+            }}
+          />
         )}
       </div>
     </div>

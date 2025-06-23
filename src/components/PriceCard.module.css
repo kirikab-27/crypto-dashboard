@@ -5,6 +5,8 @@
   transition: all 0.3s ease;
   border: 1px solid #2a2a2a;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .card:hover {
@@ -15,6 +17,7 @@
 
 .card.expanded {
   transform: translateY(0);
+  z-index: 10;
 }
 
 .cardContent {

@@ -57,4 +57,18 @@ export const coinGeckoApi = {
       throw error;
     }
   },
+
+  async searchCoins(query: string): Promise<any[]> {
+    try {
+      const response = await api.get('/search', {
+        params: {
+          query: query,
+        },
+      });
+      return response.data.coins || [];
+    } catch (error) {
+      console.error('Error searching coins:', error);
+      throw error;
+    }
+  },
 };
